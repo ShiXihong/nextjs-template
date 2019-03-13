@@ -1,0 +1,29 @@
+    
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "baseUrl": ".",
+    "outDir": "build",
+    "jsx": "react",
+    "allowJs": true,
+    "strict": false,
+    "pretty": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es6", "es7", "dom"]
+  },
+  "exclude": [
+    "static",
+    "build",
+    "node_modules"
+  ]
+}
