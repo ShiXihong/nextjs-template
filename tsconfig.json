@@ -4,6 +4,13 @@
     "module": "esnext",
     "target": "es5",
     "baseUrl": ".",
+    "paths": {
+      "*": [
+        "pages/*",
+        "src/*",
+        "static/*"
+      ]
+    },
     "outDir": "build",
     "jsx": "react",
     "allowJs": true,

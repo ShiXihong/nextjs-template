@@ -1,20 +1,19 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { setInfo } from 'actions/home'
+import { getData } from 'actions/home'
 
-@connect()
-export default class extends Component {
+class Index extends Component<any, any> {
   static async getInitialProps (props: any) {
     const { store, isServer } = props.ctx
-    store.dispatch(setInfo(isServer))
-
-    if (!store.getState().placeholderData) {
-      store.dispatch(loadData())
-    }
-
+    store.dispatch(getData())
     return { isServer }
   }
+  componentDidMount(): void {
+    console.log(this.props)
+  }
+
   render() {
+
     return (
       <div>
         Hello Next.js
@@ -22,3 +21,7 @@ export default class extends Component {
     )
   }
 }
+
+export default connect((state: any) => ({
+  home: state.home
+}))(Index)

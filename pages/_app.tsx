@@ -9,12 +9,13 @@ class MyApp extends App {
   static async getInitialProps({Component, ctx}: { Component: any, ctx: any }) {
     let pageProps = {}
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+      pageProps = await Component.getInitialProps({ctx})
     }
     return {pageProps}
   }
 
   render() {
+    // @ts-ignore
     const {Component, pageProps, store} = this.props
     return (
       <Container>
@@ -26,4 +27,4 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(createStore, {debug: true})(withReduxSaga(MyApp))
+export default withRedux(createStore)(withReduxSaga(MyApp))

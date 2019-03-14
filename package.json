@@ -10,10 +10,12 @@
     "dev": "cross-env NODE_ENV=development BUILD_ENV=development nodemon server.ts"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "immer": "^2.1.2",
     "next": "^8.0.3",
     "next-redux-saga": "^4.0.1",
     "next-redux-wrapper": "^3.0.0-alpha.2",
+    "qs": "^6.6.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
@@ -24,9 +26,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
+    "@types/axios": "^0.14.0",
     "@types/next": "^8.0.1",
     "@types/next-redux-saga": "^3.0.1",
     "@types/next-redux-wrapper": "^2.0.2",
+    "@types/qs": "^6.5.2",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
     "@types/react-redux": "^7.0.3",

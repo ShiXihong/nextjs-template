@@ -1,10 +1,10 @@
 import { all, fork } from 'redux-saga/effects'
 import { ENV } from 'constants/env'
-import intlSaga from './intl'
+import homeSaga from './home'
 import loggerSaga from './logger'
 
 const sagas = {
-  intlSaga: fork(intlSaga),
+  intlSaga: fork(homeSaga),
   loggerSaga: fork(loggerSaga)
 }
 
