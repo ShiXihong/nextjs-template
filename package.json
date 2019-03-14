@@ -6,12 +6,15 @@
   "author": "Shi Xihong(moer)",
   "license": "MIT",
   "scripts": {
-    "nextDev": "next",
-    "dev": "cross-env NODE_ENV=development BUILD_ENV=development nodemon server.ts"
+    "dev": "nodemon",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "immer": "^2.1.2",
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
     "next": "^8.0.3",
     "next-redux-saga": "^4.0.1",
     "next-redux-wrapper": "^3.0.0-alpha.2",
@@ -48,6 +51,7 @@
     "nodemon": "^1.18.10",
     "postcss-smart-import": "^0.7.6",
     "precss": "^4.0.0",
+    "ts-node": "^8.0.3",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.6"
   }

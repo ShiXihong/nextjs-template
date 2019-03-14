@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getData } from 'actions/home'
+import * as homeActions from 'actions/home'
 
 class Index extends Component<any, any> {
   static async getInitialProps (props: any) {
-    const { store, isServer } = props.ctx
-    store.dispatch(getData())
+    const { isServer } = props.ctx
+    // store.dispatch(getData())
     return { isServer }
   }
   componentDidMount(): void {
     console.log(this.props)
+    this.props.actions.getData()
   }
 
   render() {
@@ -24,4 +26,8 @@ class Index extends Component<any, any> {
 
 export default connect((state: any) => ({
   home: state.home
+}), (dispatch: any) => ({
+  actions: bindActionCreators({
+    ...homeActions
+  }, dispatch)
 }))(Index)
