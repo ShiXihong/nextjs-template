@@ -5,13 +5,13 @@ import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 import createStore from 'store'
 
-class MyApp extends App {
+class MyApp extends App<any, any> {
   static async getInitialProps({Component, ctx}: { Component: any, ctx: any }) {
     let pageProps = {}
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ctx})
     }
-    return {pageProps}
+    return { pageProps }
   }
 
   render() {

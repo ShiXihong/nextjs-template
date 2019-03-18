@@ -1,5 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
+import { ENV, GATEWAY_API_URL, WEBSOCKET_API_URL } from 'env'
 
 const baseConfig = {
   // `method` 是创建请求时使用的方法
@@ -55,8 +56,15 @@ for (let p in baseConfig) {
 
 axios.interceptors.request.use(async function (config) {
 
+  // if (config.url) {
+  //   config.url = `${GATEWAY_API_URL}${config.url}`
+  // }
+
   console.log('请求接口————————————————', config.url)
   console.log('请求数据————————————————', config.data)
+  console.log('接口环境————————————————', ENV)
+  console.log('GATEWAY_API_URL————————————————', GATEWAY_API_URL)
+  console.log('WEBSOCKET_API_URL————————————————', WEBSOCKET_API_URL)
 
 
   return config;
@@ -68,6 +76,9 @@ axios.interceptors.request.use(async function (config) {
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
   // 对响应数据做点什么
+  if (response.status === 200) {
+    return response.data
+  }
   return response;
 }, function (error) {
   // 对响应错误做点什么

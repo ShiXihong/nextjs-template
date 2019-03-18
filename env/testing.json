@@ -1,0 +1,5 @@
+{
+  "ENV": "testing",
+  "GATEWAY_API_URL": "http://www.test.com",
+  "WEBSOCKET_API_URL": ""
+}

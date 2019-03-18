@@ -1,20 +1,27 @@
 import { handleActions } from 'utils/redux-actions'
+import { produce } from 'immer'
 import * as actions from 'actions/home'
 
 const initState = {
   loading: false,
   error: null,
-  text: '222222222222222'
+  data: null
 }
 
 export default handleActions({
   [String(actions.getData)] (state: any) {
-    return { ...state, loading: true }
+    return produce(state, (draftState: any) => {
+      draftState.loading = true
+    })
   },
   [String(actions.setInfo)] (state: any, action: any) {
-    return { ...state, text: action.payload}
+    return produce(state, (draftState: any) => {
+      draftState.data = action.payload
+    })
   },
   [String(actions.getDataError)] (state: any, action: any) {
-    return { ...state, error: action.payload }
+    return produce(state, (draftState: any) => {
+      draftState.error = action.payload
+    })
   }
 }, initState)

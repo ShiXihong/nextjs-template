@@ -7,11 +7,18 @@ declare type Locale = 'en' | 'zh'
 // interfaces
 
 declare interface Config {
-  ENV: string
+  ENV: string,
+  GATEWAY_API_URL: string
+  WEBSOCKET_API_URL: string
 }
 
 declare interface RootState {
-  intl?: any
+  local?: any
+}
+
+declare interface RootProps {
+  actions?: any,
+  isServer?: boolean
 }
 
 // declare interface FetchOptions {
@@ -69,7 +76,7 @@ declare module '*production' {
   export = config
 }
 
-declare module 'constants/env' {
+declare module 'env' {
   const config: Config
   export = config
 }

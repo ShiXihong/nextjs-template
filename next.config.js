@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const withTypescript = require("@zeit/next-typescript")
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const withSass = require('@zeit/next-sass')
@@ -13,7 +14,8 @@ const alias = {
   'sagas': path.resolve(__dirname, './src/sagas'),
   'reducers': path.resolve(__dirname, './src/reducers'),
   'store': path.resolve(__dirname, './src/store'),
-  'components': path.resolve(__dirname, './src/components')
+  'components': path.resolve(__dirname, './src/components'),
+  'env': path.resolve(__dirname, './env'),
 }
 
 module.exports = withTypescript(
@@ -29,6 +31,16 @@ module.exports = withTypescript(
       webpack(config, options) {
         // Do not run type checking twice:
         if (options.isServer) config.plugins.push(new ForkTsCheckerWebpackPlugin())
+
+        // 改变环境地址
+        config.plugins.push(new webpack.NormalModuleReplacementPlugin(/.\/production/, `./${process.env.APP_ENV}.json`))
+
+        config.plugins.forEach(plugin => {
+          if (plugin.constructor.name === 'DefinePlugin') {
+            plugin.definitions['process.env.NODE_ENV'] = JSON.stringify(process.env.NODE_ENV || 'production')
+            plugin.definitions['process.env.APP_ENV'] = JSON.stringify(process.env.APP_ENV || 'production')
+          }
+        })
 
         for (let p in alias) {
           config.resolve.alias[p] = alias[p];

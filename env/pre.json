@@ -1,0 +1,5 @@
+{
+  "ENV": "pre",
+  "GATEWAY_API_URL": "https://www.pre.com/",
+  "WEBSOCKET_API_URL": ""
+}

@@ -2,5 +2,10 @@
   "presets": [
     "next/babel",
     "@zeit/next-typescript/babel"
+  ],
+  "plugins": [
+    "transform-function-bind",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
   ]
 }

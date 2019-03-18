@@ -1,0 +1,5 @@
+{
+  "ENV": "production",
+  "GATEWAY_API_URL": "https://www.pro.com",
+  "WEBSOCKET_API_URL": ""
+}

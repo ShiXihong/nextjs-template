@@ -1,5 +1,5 @@
 import { all, fork } from 'redux-saga/effects'
-import { ENV } from 'constants/env'
+import { ENV } from 'env'
 import homeSaga from './home'
 import loggerSaga from './logger'
 
