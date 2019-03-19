@@ -66,7 +66,6 @@ axios.interceptors.request.use(async function (config) {
   console.log('GATEWAY_API_URL————————————————', GATEWAY_API_URL)
   console.log('WEBSOCKET_API_URL————————————————', WEBSOCKET_API_URL)
 
-
   return config;
 }, function (error) {
   // 对请求错误做些什么

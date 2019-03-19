@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Link from 'next/link'
 import * as homeActions from 'actions/home'
+import reactLogo from 'static/images/react-logo.png'
 import style from './style.scss'
 
 interface State extends RootState{
@@ -30,7 +31,7 @@ class Home extends Component<Props, State> {
     const data = home && home.data
     return (
       <div className={style.home}>
-        <p>{isServer}</p>
+        <img data-server={isServer} src={reactLogo} />
         <div className={style.tdHeader}>
           <p>Name</p>
           <p>User Name</p>

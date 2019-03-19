@@ -85,6 +85,10 @@ declare module 'transit-immutable-js' {
   const transit: any
   export = transit
 }
+declare module 'koa-combine-routers' {
+  const combine: any
+  export  = combine
+}
 
 declare module 'redux-form/es/immutable' {
   interface Form {

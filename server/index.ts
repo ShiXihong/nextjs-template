@@ -1,11 +1,16 @@
-const Koa = require('koa')
-const next = require('next')
-const Router = require('koa-router')
+import * as Koa from 'koa'
+import * as next from 'next'
+import * as Router from 'koa-router'
+import { configure, getLogger } from 'log4js'
 
 const port = parseInt(String(process.env.PORT), 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+
+configure('./log4.config.json')
+const logger = getLogger()
+logger.level = 'debug'
 
 app.prepare().then(() => {
     const server = new Koa()
@@ -27,6 +32,7 @@ app.prepare().then(() => {
     })
 
     server.use(router.routes())
+
     server.listen(port, () => {
         console.log(`> Ready on http://localhost:${port}`)
     })
