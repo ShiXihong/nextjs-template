@@ -3,7 +3,6 @@ import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import * as aboutActions from "actions/about"
 import style from './style.scss'
-// import * as homeActions from "../../src/actions/home";
 
 interface State extends RootState{
 }
@@ -18,12 +17,17 @@ class About extends Component<Props, State> {
     return { isServer }
   }
 
+  onTestClick = () => {
+    console.log(new Date())
+  }
+
   render() {
     const { home, isServer } = this.props
     const data = (home && home.data) || []
 
     return (
       <div className={style.test}>
+        <button onClick={this.onTestClick}>test</button>
         <p>{isServer}</p>
         <p>从store 过来的数据</p>
         <div className={style.tdHeader}>

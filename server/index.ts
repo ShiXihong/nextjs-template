@@ -5,6 +5,7 @@ import { configure, getLogger } from 'log4js'
 
 const port = parseInt(String(process.env.PORT), 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
+
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
@@ -21,8 +22,15 @@ app.prepare().then(() => {
         ctx.respond = false
     })
 
+    router.all('/api/logger', async (ctx: any) => {
+      console.log('ctx', ctx.res.body)
+      ctx.res.statusCode = 200
+      ctx.res.body = {}
+    })
+
     router.get('*', async (ctx: any) => {
         await handle(ctx.req, ctx.res)
+        console.log('NODE_ENV', process.env.NODE_ENV, dev)
         ctx.respond = false
     })
 

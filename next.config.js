@@ -40,7 +40,7 @@ module.exports = withTypescript(
             if (options.isServer) config.plugins.push(new ForkTsCheckerWebpackPlugin())
 
             // 改变环境地址
-            config.plugins.push(new webpack.NormalModuleReplacementPlugin(/.\/production/, `./${process.env.APP_ENV}.json`))
+            config.plugins.push(new webpack.NormalModuleReplacementPlugin(/.\/production/, `./${process.env.APP_ENV || 'production'}.json`))
 
             config.plugins.forEach(plugin => {
               if (plugin.constructor.name === 'DefinePlugin') {
@@ -49,9 +49,7 @@ module.exports = withTypescript(
               }
             })
 
-            for (let p in alias) {
-              config.resolve.alias[p] = alias[p];
-            }
+            config.resolve.alias = { ...config.resolve.alias, ...alias }
 
             return config
           }

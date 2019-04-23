@@ -14,6 +14,22 @@ class MyApp extends App<any, any> {
     return { pageProps }
   }
 
+  componentDidMount(): void {
+    //页面加载时、及改变窗口尺寸时设置html的fontSize
+    this.onSetRootFontSize()
+    window.onresize = () => {
+      this.onSetRootFontSize()
+    }
+  }
+
+  onSetRootFontSize = () => {
+    let clientWidth = document.documentElement.clientWidth;
+    if (clientWidth > 750) {
+      clientWidth = 750
+    }
+    document.documentElement.style.fontSize = clientWidth / 46.875 + 'px';
+  }
+
   render() {
     // @ts-ignore
     const {Component, pageProps, store} = this.props
