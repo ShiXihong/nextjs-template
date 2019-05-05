@@ -35,13 +35,13 @@ module.exports = withTypescript(
             importLoaders: 1,
             localIdentName: "[local]__[hash:base64:5]",
           },
+          distDir: 'dist', // 打包后的文件存放地址
           webpack(config, options) {
             // Do not run type checking twice:
             if (options.isServer) config.plugins.push(new ForkTsCheckerWebpackPlugin())
 
             // 改变环境地址
             config.plugins.push(new webpack.NormalModuleReplacementPlugin(/.\/production/, `./${process.env.APP_ENV || 'production'}.json`))
-
             config.plugins.forEach(plugin => {
               if (plugin.constructor.name === 'DefinePlugin') {
                 plugin.definitions['process.env.NODE_ENV'] = JSON.stringify(process.env.NODE_ENV || 'production')
